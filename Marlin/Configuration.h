@@ -49,7 +49,7 @@
  *
  * Note: Update also Version.h !
  */
-#define CONFIGURATION_H_VERSION 010100
+#define CONFIGURATION_H_VERSION 010300
 
 //===========================================================================
 //============================= Getting Started =============================
@@ -86,7 +86,7 @@
 // User-specified version info of this build to display in [Pronterface, etc] terminal window during
 // startup. Implementation of an idea by Prof Braino to inform user that any changes made to this
 // build by the user have been successfully uploaded into firmware.
-#define STRING_CONFIG_H_AUTHOR "(none, default config)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Steve Smith)" // Who made the changes.
 #define SHOW_BOOTSCREEN
 #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
 #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
@@ -121,16 +121,16 @@
 // The following define selects which electronics board you have.
 // Please choose the name from boards.h that matches your setup
 #ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_14_EFB
+  #define MOTHERBOARD BOARD_SANGUINOLOLU_12
 #endif
 
 // Optional custom name for your RepStrap or other custom machine
 // Displayed in the LCD "Ready" message
-//#define CUSTOM_MACHINE_NAME "3D Printer"
+#define CUSTOM_MACHINE_NAME "Mendel 90"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
-//#define MACHINE_UUID "00000000-0000-0000-0000-000000000000"
+//#define MACHINE_UUID "ac006d34-dcc4-4e0e-a574-d3e51c45d849"
 
 // This defines the number of extruders
 // :[1,2,3,4]
@@ -229,7 +229,7 @@
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
-#define TEMP_SENSOR_BED 0
+#define TEMP_SENSOR_BED 1
 
 // This makes temp sensor 1 a redundant sensor for sensor 0. If the temperatures difference between these sensors is to high the print will be aborted.
 //#define TEMP_SENSOR_1_AS_REDUNDANT
@@ -252,7 +252,7 @@
 #define HEATER_1_MINTEMP 5
 #define HEATER_2_MINTEMP 5
 #define HEATER_3_MINTEMP 5
-#define BED_MINTEMP 5
+#define BED_MINTEMP 2
 
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
@@ -285,10 +285,16 @@
   #define K1 0.95 //smoothing factor within the PID
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+
+  // Mendel 90
+  #define  DEFAULT_Kp 20.8
+  #define  DEFAULT_Ki 1.66
+  #define  DEFAULT_Kd 65.6
+  
   // Ultimaker
-  #define  DEFAULT_Kp 22.2
-  #define  DEFAULT_Ki 1.08
-  #define  DEFAULT_Kd 114
+  //#define  DEFAULT_Kp 22.2
+  //#define  DEFAULT_Ki 1.08
+  //#define  DEFAULT_Kd 114
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -330,11 +336,17 @@
 
   #define PID_BED_INTEGRAL_DRIVE_MAX MAX_BED_POWER //limit for the integral term
 
+
+  // Mendel 90 Heated bed, PCB 12V
+  #define  DEFAULT_bedKp 183.0
+  #define  DEFAULT_bedKi 12.0
+  #define  DEFAULT_bedKd 700.0
+
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define  DEFAULT_bedKp 10.00
-  #define  DEFAULT_bedKi .023
-  #define  DEFAULT_bedKd 305.4
+  //#define  DEFAULT_bedKp 10.00
+  //#define  DEFAULT_bedKi .023
+  //#define  DEFAULT_bedKd 305.4
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -398,12 +410,12 @@
 // Specify here all the endstop connectors that are connected to any endstop or probe.
 // Almost all printers will be using one per axis. Probes will use one or more of the
 // extra connectors. Leave undefined any used for non-endstop and non-probe purposes.
-#define USE_XMIN_PLUG
-#define USE_YMIN_PLUG
-#define USE_ZMIN_PLUG
-//#define USE_XMAX_PLUG
-//#define USE_YMAX_PLUG
-//#define USE_ZMAX_PLUG
+//#define USE_XMIN_PLUG
+//#define USE_YMIN_PLUG
+//#define USE_ZMIN_PLUG
+#define USE_XMAX_PLUG
+#define USE_YMAX_PLUG
+#define USE_ZMAX_PLUG
 
 // coarse Endstop Settings
 #define ENDSTOPPULLUPS // Comment this out (using // at the start of the line) to disable the endstop pullup resistors
@@ -576,8 +588,8 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
-#define INVERT_Z_DIR false
+#define INVERT_Y_DIR false
+#define INVERT_Z_DIR true
 
 // @section extruder
 
@@ -595,9 +607,9 @@
 // ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
-#define Y_HOME_DIR -1
-#define Z_HOME_DIR -1
+#define X_HOME_DIR 1
+#define Y_HOME_DIR 1
+#define Z_HOME_DIR 1
 
 #define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.
 #define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
@@ -610,7 +622,7 @@
 #define Z_MIN_POS 0
 #define X_MAX_POS 200
 #define Y_MAX_POS 200
-#define Z_MAX_POS 200
+#define Z_MAX_POS 180
 
 //===========================================================================
 //========================= Filament Runout Sensor ==========================
@@ -740,7 +752,7 @@
 
 // Homing speeds (mm/m)
 #define HOMING_FEEDRATE_XY (50*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_Z  (3.5*60)
 
 //
 // MOVEMENT SETTINGS
@@ -749,9 +761,9 @@
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,4000,500}  // default steps per unit for Ultimaker
-#define DEFAULT_MAX_FEEDRATE          {300, 300, 5, 25}    // (mm/sec)
-#define DEFAULT_MAX_ACCELERATION      {3000,3000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {160.00,160.00,2560.0,523.3}  // default steps per unit for Ultimaker
+#define DEFAULT_MAX_FEEDRATE          {300, 300, 4, 20}    // (mm/sec)
+#define DEFAULT_MAX_ACCELERATION      {3000,3000,75,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
 #define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration in mm/s^2 for printing moves
 #define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration in mm/s^2 for retracts
@@ -760,7 +772,7 @@
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
 #define DEFAULT_XYJERK                20.0    // (mm/sec)
 #define DEFAULT_ZJERK                 0.4     // (mm/sec)
-#define DEFAULT_EJERK                 5.0    // (mm/sec)
+#define DEFAULT_EJERK                 4.0    // (mm/sec)
 
 
 //=============================================================================
@@ -777,7 +789,7 @@
 // M501 - reads parameters from EEPROM (if you need reset them after you changed them temporarily).
 // M502 - reverts to the default "factory settings".  You still need to store them in EEPROM afterwards if you want to.
 //define this to enable EEPROM support
-//#define EEPROM_SETTINGS
+#define EEPROM_SETTINGS
 
 #if ENABLED(EEPROM_SETTINGS)
   // To disable EEPROM Serial responses and decrease program space by ~1700 byte: comment this out:
@@ -960,7 +972,7 @@
 //
 // :['JAPANESE','WESTERN','CYRILLIC']
 //
-#define DISPLAY_CHARSET_HD44780 JAPANESE
+#define DISPLAY_CHARSET_HD44780 WESTERN
 
 //
 // LCD TYPE

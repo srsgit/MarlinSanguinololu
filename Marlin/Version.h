@@ -35,7 +35,7 @@
   /**
    * Marlin release version identifier
    */
-  #define SHORT_BUILD_VERSION "1.1.0-RC7"
+  #define SHORT_BUILD_VERSION "1.1.0-RC7 (M90)"
 
   /**
    * Verbose version identifier which should contain a reference to the location
@@ -48,7 +48,7 @@
    * here we define this default string as the date where the latest release
    * version was tagged.
    */
-  #define STRING_DISTRIBUTION_DATE "2016-07-31 12:00"
+  #define STRING_DISTRIBUTION_DATE __DATE__ " " __TIME__ // build date and time
 
   /**
    * Required minimum Configuration.h and Configuration_adv.h file versions.
@@ -57,8 +57,8 @@
    * but not limited to: ADD, DELETE RENAME OR REPURPOSE any directive/option on
    * the configuration files.
    */
-  #define REQUIRED_CONFIGURATION_H_VERSION 010100
-  #define REQUIRED_CONFIGURATION_ADV_H_VERSION 010100
+  #define REQUIRED_CONFIGURATION_H_VERSION 010200
+  #define REQUIRED_CONFIGURATION_ADV_H_VERSION 010200
 
   /**
    * @todo: Missing documentation block
@@ -68,7 +68,7 @@
   /**
    * Defines a generic printer name to be output to the LCD after booting Marlin.
    */
-  #define MACHINE_NAME "3D Printer"
+  #define MACHINE_NAME "Mendel 90"
 
   /**
    * The SOURCE_CODE_URL is the location where users will find the Marlin Source
